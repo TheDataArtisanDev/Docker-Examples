@@ -147,6 +147,114 @@ Effective troubleshooting in Docker involves understanding container behavior an
 - **Exec:** Run commands inside running containers for debugging or maintenance.
 - **Prune:** Remove unused containers, images, networks, and volumes to free up resources and maintain a clean environment.
 
+
+
+### Docker CLI Commands Reference
+
+This section provides a practical explanation of commonly used Docker commands categorized by their purpose.
+
+#### 🔧 Image Commands
+
+* `docker build -t <image_name> .`
+  * Builds an image using the Dockerfile in the current directory and tags it with a name.
+* `docker build --no-cache -t <image_name> .`
+  * Forces a fresh build of all layers, bypassing Docker's build cache.
+* `docker images`
+  * Lists all locally stored Docker images.
+* `docker rmi <image_name>`
+  * Removes a specified image from local storage.
+* `docker image prune`
+  * Deletes unused or dangling image layers to free up disk space.
+
+#### 🏃 Container Commands
+
+* `docker run <image>`
+  * Runs a container from the specified image.
+* `docker run -it <image>`
+  * Runs a container in interactive mode with a terminal session.
+* `docker run -d <image>`
+  * Starts a container in detached mode (in the background).
+* `docker run --rm <image>`
+  * Runs a container and removes it automatically after it exits.
+* `docker run -p 5000:5000 <image>`
+  * Maps port 5000 of the host to port 5000 of the container.
+* `docker run -v $(pwd)/data:/data <image>`
+  * Mounts a local directory as a volume inside the container.
+
+#### 📋 Container Lifecycle
+
+* `docker ps`
+  * Lists currently running containers.
+* `docker ps -a`
+  * Lists all containers, including stopped ones.
+* `docker stop <container_id>`
+  * Stops a running container by ID or name.
+* `docker start <container_id>`
+  * Starts an existing, stopped container.
+* `docker restart <container_id>`
+  * Restarts a running or stopped container.
+* `docker rm <container_id>`
+  * Deletes a container from the local system.
+
+#### 🔍 Logs and Debugging
+
+* `docker logs <container_id>`
+  * Outputs logs from a running container.
+* `docker exec -it <container_id> bash`
+  * Opens an interactive shell session inside a running container.
+* `docker inspect <container_id or image>`
+  * Displays detailed metadata and configuration information.
+* `docker stats`
+  * Shows real-time metrics for container resource usage.
+
+#### 📦 Volumes and Data
+
+* `docker volume ls`
+  * Lists all volumes managed by Docker.
+* `docker volume create <name>`
+  * Creates a named volume.
+* `docker volume rm <name>`
+  * Removes a specific volume.
+* `docker volume inspect <name>`
+  * Displays metadata and mount paths of a volume.
+
+#### 🌐 Networking
+
+* `docker network ls`
+  * Lists all Docker networks.
+* `docker network create <name>`
+  * Creates a new custom user-defined network.
+* `docker network inspect <name>`
+  * Provides details about a specific network’s configuration.
+* `docker network connect <network> <container>`
+  * Attaches a container to a specified network.
+* `docker network disconnect <network> <container>`
+  * Detaches a container from a specified network.
+
+#### 🧹 System Cleanup
+
+* `docker system df`
+  * Displays disk usage by Docker images, containers, and volumes.
+* `docker system prune`
+  * Removes all unused containers, networks, and dangling images.
+* `docker system prune -a`
+  * Aggressively cleans up all unused data including unused images.
+
+#### 🧩 Docker Compose
+
+* `docker-compose up`
+  * Starts all services defined in `docker-compose.yml`.
+* `docker-compose up --build`
+  * Rebuilds images before starting services.
+* `docker-compose down`
+  * Stops and removes containers, networks, and volumes created by Compose.
+* `docker-compose logs`
+  * Displays logs for all Compose-managed services.
+* `docker-compose ps`
+  * Shows status and port mappings of Compose services.
+* `docker-compose build`
+  * Builds images defined in the Compose file without running them.
+
 ---
 
 ## References
